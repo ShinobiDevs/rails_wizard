@@ -1,8 +1,13 @@
 gem 'bson_ext'
-gem 'mongoid', '>= 2.0.1'
+gem 'mongoid', git: 'https://github.com/mongoid/mongoid.git'
 
 after_bundler do
   generate 'mongoid:config'
+end
+
+inject_into_file "config/initializers/generators.rb", :after => "Rails.application.config.generators do |g|\n" do
+  "    g.orm = :mongoid\n"
+  "    g.test_framework = :rspec\n"
 end
 
 __END__

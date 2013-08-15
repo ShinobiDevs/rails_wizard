@@ -9,9 +9,8 @@ after_bundler do
     generate 'mongo_mapper:devise User'
   elsif recipes.include? 'mongoid'
     gsub_file 'config/initializers/devise.rb', 'devise/orm/active_record', 'devise/orm/mongoid'
+    generate 'mongoid:devise User'
   end      
-
-  generate 'devise user'
 end
 
 __END__
